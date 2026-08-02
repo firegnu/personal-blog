@@ -2,7 +2,7 @@ baseURL: "http://139.180.184.8/"
 languageCode: "zh-cn"
 defaultContentLanguage: zh
 hasCJKLanguage: true
-title: "个人博客"
+title: "Xin 的构建日志"
 theme: ["PaperMod"]
 pagination:
   pagerSize: 10
@@ -17,7 +17,7 @@ params:
   ShowCodeCopyButtons: true
   homeInfoParams:
     Title: "你好 👋"
-    Content: "记录技术、AI 与真实项目实践。"
+    Content: "记录开发、AI 与多 agent 的实践。"
 menu:
   main:
     - identifier: posts
