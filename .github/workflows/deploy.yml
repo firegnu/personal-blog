@@ -1,0 +1,40 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.154.5'
+          extended: true
+
+      - name: Build site (validate)
+        run: hugo --minify
+
+      - name: Configure SSH and trigger VPS deploy
+        env:
+          DEPLOY_KEY: ${{ secrets.VPS_DEPLOY_KEY }}
+          VPS_HOST: ${{ vars.VPS_HOST }}
+          VPS_USER: ${{ vars.VPS_USER }}
+        run: |
+          install -d -m 700 "$HOME/.ssh"
+          printf '%s\n' "$DEPLOY_KEY" > "$HOME/.ssh/id_deploy"
+          chmod 600 "$HOME/.ssh/id_deploy"
+          # Pin the VPS host key to prevent MITM
+          printf '%s ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBLYIaB3ef8K0KEYLS+NRzb64CK5QO8kT1YTgAjNJ4EV\n' "$VPS_HOST" > "$HOME/.ssh/known_hosts"
+          # Trigger the restricted deploy command on the VPS (server-enforced command=)
+          ssh -i "$HOME/.ssh/id_deploy" -o StrictHostKeyChecking=yes \
+              -o IdentitiesOnly=yes -o BatchMode=yes \
+              "${VPS_USER}@${VPS_HOST}" true
