@@ -1,4 +1,31 @@
+# Hugo
 /public/
-/resources/
+/resources/_gen/
+assets/_gen/
 .hugo_build.lock
+
+# macOS
 .DS_Store
+
+# Editor / OS
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+Thumbs.db
+
+# Local config / secrets
+.env
+.env.*
+*.local
+secrets.*
+deploy_config.local
+
+# Logs / temp
+*.log
+*.tmp
+/tmp/
+
+# Node dependency dirs (if any tooling uses them)
+node_modules/
