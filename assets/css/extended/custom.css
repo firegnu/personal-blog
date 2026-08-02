@@ -31,11 +31,11 @@ body {
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --theme: #121722; --entry: #1a2230; --primary: #edf2fa; --secondary: #aab6c8;
+    --theme: #1A1A19; --entry: #1a2230; --primary: #edf2fa; --secondary: #aab6c8;
     --tertiary: #2d394c; --content: #d7e0ed; --border: #2d394c;
   }
 }
-[data-theme="dark"] { --theme: #121722; --entry: #1a2230; --primary: #edf2fa; --secondary: #aab6c8; --tertiary: #2d394c; --content: #d7e0ed; --border: #2d394c; }
+[data-theme="dark"] { --theme: #1A1A19; --entry: #1a2230; --primary: #edf2fa; --secondary: #aab6c8; --tertiary: #2d394c; --content: #d7e0ed; --border: #2d394c; }
 
 @media (max-width: 680px) {
   .first-entry { min-height: 180px; padding: 28px 22px; border-radius: 14px; }
