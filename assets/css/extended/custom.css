@@ -31,11 +31,11 @@ body {
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --theme: #1A1A19; --entry: #1a2230; --primary: #edf2fa; --secondary: #aab6c8;
-    --tertiary: #2d394c; --content: #d7e0ed; --border: #2d394c;
+    --theme: #1A1A19; --entry: #262624; --primary: #f2f2f0; --secondary: #bdbdb8;
+    --tertiary: #3a3a37; --content: #deded9; --border: #3a3a37;
   }
 }
-[data-theme="dark"] { --theme: #1A1A19; --entry: #1a2230; --primary: #edf2fa; --secondary: #aab6c8; --tertiary: #2d394c; --content: #d7e0ed; --border: #2d394c; }
+[data-theme="dark"] { --theme: #1A1A19; --entry: #262624; --primary: #f2f2f0; --secondary: #bdbdb8; --tertiary: #3a3a37; --content: #deded9; --border: #3a3a37; }
 
 @media (max-width: 680px) {
   .first-entry { min-height: 180px; padding: 28px 22px; border-radius: 14px; }
