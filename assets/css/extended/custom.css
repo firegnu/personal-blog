@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
 :root {
   --theme: #f7f9fc;
   --entry: #ffffff;
@@ -41,3 +42,10 @@ body {
   .first-entry .entry-header h1 { font-size: 1.8rem; }
   .post-entry { border-radius: 12px; }
 }
+
+/* 正文衬线（Noto Serif SC 自动子集化，加速中文阅读感） */
+.post-content, .post-single .post-content, .entry-content, .first-entry .entry-content {
+  font-family: "Noto Serif SC", "Songti SC", SimSun, serif;
+}
+.post-content p, .post-content li { line-height: 1.9; }
+.post-single .post-header h1 { letter-spacing: -.02em; }
