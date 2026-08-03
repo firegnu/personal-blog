@@ -97,7 +97,7 @@ html::before {
   border: 0;
   border-bottom: 1px solid var(--border);
   border-radius: 0;
-  padding: 1.7rem 0;
+  padding: 1.15rem 0;
   background: transparent;
   box-shadow: none;
   transition: padding .18s ease;
