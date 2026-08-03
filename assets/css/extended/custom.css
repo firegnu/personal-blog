@@ -189,3 +189,27 @@ p > code, li > code { background: var(--tertiary); color: var(--content); paddin
   .post-single .post-header h1 { font-size: 1.9rem; }
   .post-content { font-size: 1rem; }
 }
+
+/* ============================ 封面 / 文章头图 ============================ */
+.post-entry .entry-cover, .post-single .post-cover, .entry-cover {
+  margin: 0 0 1.2rem;
+}
+.entry-cover img {
+  border-radius: 12px; border: 1px solid var(--border); width: 100%; height: auto;
+  object-fit: cover;
+}
+.post-entry .entry-cover img {
+  max-height: 220px;
+}
+
+/* ============================ 文章元信息（日期·阅读时间）============================ */
+.post-meta {
+  color: var(--secondary); font-size: .86rem; letter-spacing: .02em;
+}
+.post-meta span { white-space: nowrap; }
+.post-meta a { color: var(--secondary); }
+.post-meta a:hover { color: var(--accent); }
+
+/* 列表条目里的 meta，置于标题上方，显得有结构 */
+.post-entry .post-meta { margin-bottom: .45rem; font-size: .82rem; text-transform: none; }
+.post-entry .entry-header h2 + .post-meta { margin-top: .5rem; }
