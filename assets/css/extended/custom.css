@@ -19,6 +19,7 @@
   --accent-soft: #efe0d5;
   --radius-s: 6px;
   --maxw: 720px;
+  --list-maxw: 1000px;
   --sans: "Geist", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   --serif: "Fraunces", "Noto Serif SC", "Songti SC", SimSun, serif;
   --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -67,7 +68,7 @@ html::before {
 .menu a:hover, .menu a.active { color: var(--accent); }
 
 /* ============================ 列表：文章条目 ============================ */
-.list .main { max-width: var(--maxw); margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+.list .main { max-width: var(--list-maxw); margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 .page-header h1 {
   font-family: var(--serif); font-weight: 600; font-size: 2.2rem; letter-spacing: -.02em; color: var(--primary);
 }
