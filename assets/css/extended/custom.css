@@ -1,140 +1,191 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap');
+/* ============================================================
+   「Xin 的构建日志」— editorial minimal identity
+   设计理念：克制的编辑感 + 有辨识度的展示字体 + 充足留白
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap');
 
 :root {
-  /* 高级感暖中性调：避免默认蓝 */
-  --theme: #faf9f7;          /* 页面底 · 暖米白 */
-  --entry: #ffffff;          /* 卡片 */
-  --primary: #1a1a18;        /* 主文字：墨黑带一点点暖 */
-  --secondary: #8a8578;      /* 次要文字：暖灰 */
-  --tertiary: #eceae4;       /* 分隔/浅面 */
-  --content: #3a3a36;        /* 正文 */
-  --code-block-bg: #1c1b19;  /* 代码块 */
-  --border: #e3e0d8;         /* 边框：暖浅 */
-  --accent: #b4552d;         /* 强调：赤陶色（克制） */
-  --radius: 16px;
+  /* 纸张感暖底 + 墨 + 一个赤陶 accent */
+  --theme: #ffffff;
+  --theme-alt: #faf7f2;         /* 次要底 · 暖纸感 */
+  --entry: #ffffff;
+  --primary: #191917;
+  --secondary: #7d796f;         /* 暖灰 */
+  --tertiary: #f0ece5;
+  --content: #2f2e2b;
+  --code-block-bg: #1d1c1a;
+  --border: #e8e3da;
+  --accent: #b0532a;            /* 赤陶 */
+  --accent-soft: #efe0d5;
+  --radius-s: 6px;
+  --maxw: 720px;
+  --sans: "Geist", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --serif: "Fraunces", "Noto Serif SC", "Songti SC", SimSun, serif;
+  --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-* { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+* { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
-
+/* ============================ 基础 ============================ */
 body {
-  font-family: "Geist", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  letter-spacing: .012em;
+  font-family: var(--sans);
+  letter-spacing: .01em;
   line-height: 1.8;
   text-rendering: optimizeLegibility;
-  transition: background-color .35s ease, color .35s ease;
+  background: var(--theme);
+  color: var(--content);
+  transition: background-color .3s ease, color .3s ease;
 }
 
-/* 可读性更佳的正文列宽 */
-.main { max-width: 780px; }
-.post-single .post-content, .page-content { max-width: 720px; margin: 0 auto; }
-
-/* ---------- 顶部导航 ---------- */
-.header { position: sticky; top: 0; z-index: 50; background: var(--theme); backdrop-filter: saturate(140%) blur(8px); border-bottom: 1px solid var(--border); }
-.header .inner { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
-.logo { font-weight: 700; letter-spacing: -.01em; font-size: 1.15rem; }
-.logo a::before { content: ""; }
-.menu a { font-size: .95rem; color: var(--secondary); transition: color .2s ease; }
-.menu a:hover, .menu a.active { color: var(--primary); }
-
-/* ---------- 首页英雄区 ---------- */
-.first-entry {
-  position: relative;
-  min-height: 240px;
-  padding: 3.2rem 3rem;
-  margin: 1.2rem auto 2rem;
-  background: linear-gradient(135deg, var(--entry) 0%, var(--theme) 100%);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: 0 1px 2px rgba(0,0,0,.02), 0 20px 50px -24px rgba(0,0,0,.12);
-  overflow: hidden;
-}
-.first-entry::after {
+/* 顶部一条精致的 accent 细线，形成品牌记忆点 */
+html::before {
   content: "";
-  position: absolute; right: -80px; top: -80px; width: 260px; height: 260px;
-  background: radial-gradient(circle at center, rgba(180,85,45,.10), transparent 70%);
-  pointer-events: none;
+  position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 100;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 120px, var(--border) 120px, var(--border) 100%);
 }
-.first-entry .entry-header h1 { font-size: 2.5rem; letter-spacing: -.04em; font-weight: 700; margin-bottom: .4rem; }
-.first-entry .entry-content { font-size: 1.1rem; color: var(--secondary); max-width: 34rem; }
 
-/* ---------- 文章列表卡片 ---------- */
+/* ============================ 导航栏 ============================ */
+.header {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--theme) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.header .inner { max-width: 1120px; margin: 0 auto; padding: 1.1rem 1.5rem; }
+.header-nav { display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem; }
+
+.logo { font-family: var(--serif); font-weight: 600; font-size: 1.6rem; letter-spacing: -.02em; color: var(--primary); }
+.logo a { color: var(--primary); }
+/* 品牌名下的 accent 短横 */
+.logo::after {
+  content: ""; display: block; width: 26px; height: 3px; margin-top: 2px;
+  background: var(--accent); border-radius: 2px;
+}
+
+.menu { display: flex; gap: 1.6rem; }
+.menu a { font-size: .96rem; color: var(--secondary); letter-spacing: .01em; transition: color .2s ease; }
+.menu a:hover, .menu a.active { color: var(--accent); }
+
+/* ============================ 首页英雄区 ============================ */
+/* 编辑感：不用大卡片，改回干净的排版 + 一点点个性 */
+.first-entry {
+  min-height: 0;
+  padding: 4.5rem 0 3.2rem;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+.first-entry::after { display: none; }
+.first-entry .entry-header h1 {
+  font-family: var(--serif); font-weight: 600; font-size: 3.1rem; line-height: 1.1;
+  letter-spacing: -.025em; color: var(--primary);
+}
+.first-entry .entry-content {
+  margin-top: 1rem; font-size: 1.2rem; color: var(--secondary); max-width: 34rem; line-height: 1.7;
+}
+/* 收藏·精选性 accent 短标签 */
+.home-info .entry-header h1::before { content: none; }
+
+/* ============================ 列表：文章条目 ============================ */
+.list .main { max-width: var(--maxw); margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+.page-header h1 {
+  font-family: var(--serif); font-weight: 600; font-size: 2.2rem; letter-spacing: -.02em; color: var(--primary);
+}
 .post-entry {
-  position: relative;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 1.6rem 1.7rem;
-  background: var(--entry);
-  box-shadow: 0 1px 2px rgba(0,0,0,.02);
-  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  padding: 1.7rem 0;
+  background: transparent;
+  box-shadow: none;
+  transition: padding .18s ease;
 }
-.post-entry:hover {
-  transform: translateY(-3px);
-  border-color: #d8d3c6;
-  box-shadow: 0 14px 40px -18px rgba(0,0,0,.15);
-}
-.post-entry .entry-header h2 { font-size: 1.35rem; letter-spacing: -.02em; }
-.post-entry .entry-content { color: var(--content); }
+.post-entry:hover { transform: none; border-color: var(--accent); }
+.post-entry .entry-header h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; letter-spacing: -.015em; color: var(--primary); }
+.post-entry:hover .entry-header h2 { color: var(--accent); }
+.post-entry .entry-content { color: var(--content); margin-top: .5rem; }
+.post-meta { color: var(--secondary); letter-spacing: .02em; }
 
-/* ---------- 文章正文排版 ---------- */
+/* ============================ 单篇文章 ============================ */
+.post-single { padding-bottom: 4rem; }
+.post-single .main { max-width: var(--maxw); }
+.post-single .post-header { padding: 2.5rem 0 1.2rem; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
 .post-single .post-header h1 {
-  font-size: 2.2rem; letter-spacing: -.035em; line-height: 1.25; font-weight: 700;
+  font-family: var(--serif); font-weight: 600; font-size: 2.6rem; line-height: 1.2; letter-spacing: -.03em; color: var(--primary);
 }
-.post-content { font-size: 1.05rem; color: var(--content); }
-.post-content p, .post-content li { line-height: 1.95; }
-.post-content h2 { font-size: 1.6rem; margin-top: 2.2rem; padding-bottom: .35rem; border-bottom: 1px solid var(--border); letter-spacing: -.02em; }
-.post-content h3 { font-size: 1.28rem; margin-top: 1.8rem; letter-spacing: -.015em; }
-.post-content a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent); text-decoration-thickness: 1px; }
+
+.post-content { font-size: 1.06rem; color: var(--content); }
+.post-content p, .post-content li { line-height: 2; }
+.post-content h2 { font-family: var(--serif); font-weight: 600; font-size: 1.7rem; margin: 2.4rem 0 1rem; letter-spacing: -.02em; color: var(--primary); }
+.post-content h3 { font-family: var(--serif); font-weight: 600; font-size: 1.35rem; margin: 2rem 0 .8rem; letter-spacing: -.015em; color: var(--primary); }
+.post-content a { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent); text-decoration-thickness: 1px; }
 .post-content a:hover { text-decoration-color: var(--accent); }
-.post-content blockquote { border-left: 3px solid var(--accent); background: var(--theme); margin: 1.5rem 0; padding: .9rem 1.4rem; border-radius: 0 10px 10px 0; color: var(--secondary); font-style: normal; }
-.post-content ul, .post-content ol { padding-left: 1.5rem; }
-.post-content img { border-radius: 12px; border: 1px solid var(--border); }
+.post-content blockquote {
+  border-left: 3px solid var(--accent); background: var(--theme-alt);
+  margin: 1.8rem 0; padding: 1rem 1.5rem; border-radius: 0 8px 8px 0; color: var(--secondary);
+}
+.post-content ul, .post-content ol { padding-left: 1.6rem; }
+.post-content li::marker { color: var(--accent); }
+.post-content img { border-radius: 10px; border: 1px solid var(--border); }
+.post-content hr { border: 0; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+.post-content strong { color: var(--primary); font-weight: 600; }
 
 /* 代码 */
-pre, code, kbd, samp { font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-pre { border-radius: 12px; border: 1px solid var(--border); box-shadow: inset 0 1px 0 rgba(255,255,255,.04); }
+pre, code, kbd, samp { font-family: var(--mono); }
+pre { border-radius: 10px; border: 1px solid var(--border); padding: 1rem 1.2rem; overflow-x: auto; }
 code { font-size: .9em; }
-p > code, li > code { background: var(--tertiary); padding: .15em .4em; border-radius: 6px; border: 1px solid var(--border); }
+p > code, li > code { background: var(--tertiary); color: var(--content); padding: .18em .45em; border-radius: 5px; font-size: .88em; }
 
 /* 标签 pill */
-.post-tags a {
-  border-radius: 999px; border: 1px solid var(--border); background: var(--theme);
-  padding: .3em .9em; font-size: .84rem; color: var(--secondary); transition: all .18s ease;
-}
-.post-tags a:hover { border-color: var(--accent); color: var(--accent); }
+.post-tags { gap: .5rem; }
+.post-tags a { border-radius: 999px; border: 1px solid var(--border); background: var(--entry); padding: .28em .95em; font-size: .82rem; color: var(--secondary); transition: all .18s ease; }
+.post-tags a:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
 
 /* 目录 */
-.toc { border: 1px solid var(--border); border-radius: 12px; background: var(--theme); }
+.toc { border: 1px solid var(--border); border-radius: 10px; background: var(--theme-alt); padding: 1.1rem 1.3rem; }
 .toc a { color: var(--secondary); }
 .toc a:hover { color: var(--accent); }
 
-/* 页脚 */
-.footer { border-top: 1px solid var(--border); color: var(--secondary); }
-.footer a { color: var(--secondary); }
-
 /* 分享按钮 */
-.share-buttons a { border: 1px solid var(--border); border-radius: 8px; margin-right: .4rem; }
+.share-buttons a { border: 1px solid var(--border); border-radius: 8px; margin-right: .4rem; color: var(--secondary); }
+.share-buttons a:hover { border-color: var(--accent); color: var(--accent); }
 
-/* ---------- 深色模式 ---------- */
+/* 上一篇/下一篇 */
+.paginav { border: 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.paginav a { color: var(--primary); font-weight: 500; }
+
+/* ============================ 页脚 ============================ */
+.footer { border-top: 1px solid var(--border); padding: 2.5rem 1.5rem; color: var(--secondary); }
+.footer .inner { max-width: 1120px; margin: 0 auto; }
+.footer a { color: var(--secondary); }
+.footer a:hover { color: var(--accent); }
+.footer .copyright { font-size: .9rem; letter-spacing: .02em; }
+.footer .copyright a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ============================ 深色模式 ============================ */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --theme: #1A1A19; --entry: #232320; --primary: #f0efeb; --secondary: #a5a29a;
-    --tertiary: #33332f; --content: #d9d7d1; --border: #34342f;
-    --code-block-bg: #151513;
+    --theme: #1A1A19; --theme-alt: #201f1d; --entry: #201f1d; --primary: #f0efea;
+    --secondary: #a6a297; --tertiary: #302f2c; --content: #d8d5cf; --border: #33322e;
+    --code-block-bg: #141413; --accent-soft: #38291f;
   }
 }
 [data-theme="dark"] {
-  --theme: #1A1A19; --entry: #232320; --primary: #f0efeb; --secondary: #a5a29a;
-  --tertiary: #33332f; --content: #d9d7d1; --border: #34342f;
-  --code-block-bg: #151513;
+  --theme: #1A1A19; --theme-alt: #201f1d; --entry: #201f1d; --primary: #f0efea;
+  --secondary: #a6a297; --tertiary: #302f2c; --content: #d8d5cf; --border: #33322e;
+  --code-block-bg: #141413; --accent-soft: #38291f;
 }
 
-/* ---------- 移动端 ---------- */
+/* ============================ 移动端 ============================ */
 @media (max-width: 680px) {
-  .first-entry { min-height: 0; padding: 2.2rem 1.5rem; margin-top: .6rem; }
-  .first-entry .entry-header h1 { font-size: 2rem; }
-  .post-entry { padding: 1.25rem 1.2rem; }
-  .post-single .post-header h1 { font-size: 1.75rem; }
+  .header .inner { padding: 1rem 1.2rem; }
+  .logo { font-size: 1.35rem; }
+  .menu { gap: 1rem; }
+  .first-entry { padding: 3rem 0 2.4rem; }
+  .first-entry .entry-header h1 { font-size: 2.3rem; }
+  .first-entry .entry-content { font-size: 1.05rem; }
+  .post-single .post-header h1 { font-size: 1.9rem; }
   .post-content { font-size: 1rem; }
 }
