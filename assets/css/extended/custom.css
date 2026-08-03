@@ -76,6 +76,9 @@ html::before {
   border-bottom: 1px solid var(--border);
   border-radius: 0;
   padding: 1.15rem 0;
+  margin: 0;
+  min-height: 0;
+  justify-content: flex-start;
   background: transparent;
   box-shadow: none;
   transition: padding .18s ease;
@@ -84,6 +87,9 @@ html::before {
 .post-entry .entry-header h2, .first-entry .entry-header h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; letter-spacing: -.015em; color: var(--primary); }
 .post-entry:hover .entry-header h2, .first-entry:hover .entry-header h2 { color: var(--accent); }
 .post-entry .entry-content, .first-entry .entry-content { color: var(--content); margin-top: .5rem; }
+/* 首页首篇对齐其余文章：去掉 PaperMod 默认的大间距 */
+.first-entry .entry-footer { font-size: .9rem; }
+.first-entry .entry-content { margin: .5rem 0; }
 .post-meta { color: var(--secondary); letter-spacing: .02em; }
 
 /* ============================ 单篇文章 ============================ */
