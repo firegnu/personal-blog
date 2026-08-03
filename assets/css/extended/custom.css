@@ -68,24 +68,31 @@ html::before {
 
 /* ============================ 首页英雄区 ============================ */
 /* 编辑感：不用大卡片，改回干净的排版 + 一点点个性 */
+/* 首页简介：紧凑的刊头（masthead），不占用大块空间 */
 .first-entry {
   min-height: 0;
-  padding: 4.5rem 0 3.2rem;
+  padding: 2.2rem 0 1.6rem;
   border: 0;
   border-bottom: 1px solid var(--border);
   border-radius: 0;
   box-shadow: none;
   background: transparent;
+  display: flex;
+  align-items: baseline;
+  gap: .9rem;
+  flex-wrap: wrap;
 }
 .first-entry::after { display: none; }
+.first-entry .entry-header { margin: 0; }
 .first-entry .entry-header h1 {
-  font-family: var(--serif); font-weight: 600; font-size: 3.1rem; line-height: 1.1;
-  letter-spacing: -.025em; color: var(--primary);
+  font-family: var(--serif); font-weight: 600; font-size: 1.7rem; line-height: 1.2;
+  letter-spacing: -.02em; color: var(--primary);
 }
+/* 中间一条精致的竖分隔线 */
 .first-entry .entry-content {
-  margin-top: 1rem; font-size: 1.2rem; color: var(--secondary); max-width: 34rem; line-height: 1.7;
+  margin: 0; font-size: 1rem; color: var(--secondary); max-width: none; line-height: 1.6;
+  border-left: 1px solid var(--border); padding-left: .9rem;
 }
-/* 收藏·精选性 accent 短标签 */
 .home-info .entry-header h1::before { content: none; }
 
 /* ============================ 列表：文章条目 ============================ */
