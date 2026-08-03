@@ -66,41 +66,12 @@ html::before {
 .menu a { font-size: .96rem; color: var(--secondary); letter-spacing: .01em; transition: color .2s ease; }
 .menu a:hover, .menu a.active { color: var(--accent); }
 
-/* ============================ 首页英雄区 ============================ */
-/* 编辑感：不用大卡片，改回干净的排版 + 一点点个性 */
-/* 首页简介：紧凑的刊头（masthead），不占用大块空间 */
-.first-entry {
-  min-height: 0;
-  padding: 2.2rem 0 1.6rem;
-  border: 0;
-  border-bottom: 1px solid var(--border);
-  border-radius: 0;
-  box-shadow: none;
-  background: transparent;
-  display: flex;
-  align-items: baseline;
-  gap: .9rem;
-  flex-wrap: wrap;
-}
-.first-entry::after { display: none; }
-.first-entry .entry-header { margin: 0; }
-.first-entry .entry-header h1 {
-  font-family: var(--serif); font-weight: 600; font-size: 1.7rem; line-height: 1.2;
-  letter-spacing: -.02em; color: var(--primary);
-}
-/* 中间一条精致的竖分隔线 */
-.first-entry .entry-content {
-  margin: 0; font-size: 1rem; color: var(--secondary); max-width: none; line-height: 1.6;
-  border-left: 1px solid var(--border); padding-left: .9rem;
-}
-.home-info .entry-header h1::before { content: none; }
-
 /* ============================ 列表：文章条目 ============================ */
 .list .main { max-width: var(--maxw); margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 .page-header h1 {
   font-family: var(--serif); font-weight: 600; font-size: 2.2rem; letter-spacing: -.02em; color: var(--primary);
 }
-.post-entry {
+.post-entry, .first-entry {
   border: 0;
   border-bottom: 1px solid var(--border);
   border-radius: 0;
@@ -109,10 +80,10 @@ html::before {
   box-shadow: none;
   transition: padding .18s ease;
 }
-.post-entry:hover { transform: none; border-color: var(--accent); }
-.post-entry .entry-header h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; letter-spacing: -.015em; color: var(--primary); }
-.post-entry:hover .entry-header h2 { color: var(--accent); }
-.post-entry .entry-content { color: var(--content); margin-top: .5rem; }
+.post-entry:hover, .first-entry:hover { transform: none; border-color: var(--accent); }
+.post-entry .entry-header h2, .first-entry .entry-header h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; letter-spacing: -.015em; color: var(--primary); }
+.post-entry:hover .entry-header h2, .first-entry:hover .entry-header h2 { color: var(--accent); }
+.post-entry .entry-content, .first-entry .entry-content { color: var(--content); margin-top: .5rem; }
 .post-meta { color: var(--secondary); letter-spacing: .02em; }
 
 /* ============================ 单篇文章 ============================ */
@@ -190,9 +161,8 @@ p > code, li > code { background: var(--tertiary); color: var(--content); paddin
   .header .inner { padding: 1rem 1.2rem; }
   .logo { font-size: 1.35rem; }
   .menu { gap: 1rem; }
-  .first-entry { padding: 3rem 0 2.4rem; }
-  .first-entry .entry-header h1 { font-size: 2.3rem; }
-  .first-entry .entry-content { font-size: 1.05rem; }
+  .first-entry { padding: 1.15rem 0; }
+  .first-entry .entry-header h2 { font-size: 1.3rem; }
   .post-single .post-header h1 { font-size: 1.9rem; }
   .post-content { font-size: 1rem; }
 }
