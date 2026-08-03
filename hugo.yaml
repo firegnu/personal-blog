@@ -21,6 +21,10 @@ menu:
       name: 文章
       url: /posts/
       weight: 10
+    - identifier: ai-daily
+      name: AI 日报
+      url: /ai-daily/
+      weight: 12
     - identifier: about
       name: 关于我
       url: /about/
