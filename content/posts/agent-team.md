@@ -4,11 +4,6 @@ date: 2026-08-02
 draft: false
 tags: ["AI", "多 agent", "Raft"]
 summary: "从 Raft 开始，记录三机 agent 团队的构建过程。"
-
-cover:
-    image: /images/covers/daily-default.svg
-    alt: ""
-    relative: false
 ---
 
 
