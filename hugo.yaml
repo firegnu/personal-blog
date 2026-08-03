@@ -15,9 +15,6 @@ params:
   ShowShareButtons: true
   ShowPostNavLinks: true
   ShowCodeCopyButtons: true
-  homeInfoParams:
-    Title: "你好 👋"
-    Content: "记录开发、AI 与多 agent 的实践。"
 menu:
   main:
     - identifier: posts
